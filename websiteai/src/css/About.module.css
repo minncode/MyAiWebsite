@@ -1,0 +1,20 @@
+.about {
+  padding: 60px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.text {
+  font-size: 1.1rem;
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 15px;
+}

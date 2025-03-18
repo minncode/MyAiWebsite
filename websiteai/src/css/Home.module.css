@@ -1,0 +1,33 @@
+.home {
+  padding: 60px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #0056b3;
+}
