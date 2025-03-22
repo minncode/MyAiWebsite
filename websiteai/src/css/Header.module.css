@@ -4,12 +4,22 @@
   width: 100%;
   background: #333;
   color: white;
-  padding: 10px 20px;
+  padding: 0px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
   z-index: 1000; /* 다른 콘텐츠 위로 보이게 */
+}
+
+.header h2 {
+  margin: 0;        /* remove any default heading margin */
+  line-height: 1;   /* tighten spacing */
+}
+
+.logo {
+  width: 100px; /* adjust as needed */
+  height: auto;
 }
 
 .navList {

@@ -1,16 +1,32 @@
-import React from 'react';
-import styles from '../css/Contact.module.css';
+import React from "react";
+import styles from "../css/Contact.module.css";
 
 function Contact() {
   return (
     <section id="contact" className={styles.contact}>
-      <h2 className={styles.title}>연락처</h2>
-      <p className={styles.text}>Email: [당신의 이메일]</p>
+      <h2 className={styles.title}>Contacts</h2>
+      <p className={styles.text}>Email: kikimin19@gmail.com</p>
       <p className={styles.text}>
-        GitHub: <a href="[당신의 GitHub URL]" className={styles.link}>[당신의 GitHub 사용자 이름]</a>
+        GitHub:{" "}
+        <a
+          href="https://github.com/minncode"
+          className={styles.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          minncode Github
+        </a>
       </p>
       <p className={styles.text}>
-        LinkedIn: <a href="[당신의 LinkedIn URL]" className={styles.link}>[당신의 이름]</a>
+        LinkedIn:{" "}
+        <a
+          href="https://www.linkedin.com/in/minsung-kim-595a64273/"
+          className={styles.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Minsung LinkedIn
+        </a>
       </p>
     </section>
   );
