@@ -14,8 +14,8 @@ function App() {
       <Home />
       <About />
       <Projects />
-      <Chat />
       <Contact />
+      <Chat />
     </div>
   );
 }
