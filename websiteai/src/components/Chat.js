@@ -3,26 +3,28 @@ import styles from '../css/Chat.module.css';
 
 function Chat() {
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([]); // 대화 기록 저장
-  const chatEndRef = useRef(null); // 스크롤을 위한 ref
+  const [messages, setMessages] = useState([]);
+  const chatEndRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
+  const chatContainerRef = useRef(null);
 
-  // 대화가 추가될 때마다 맨 아래로 스크롤
+  // Scroll to bottom when messages update
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   const sendMessage = async () => {
-    if (!input.trim()) return; // 빈 입력 방지
+    if (!input.trim()) return;
 
-    // 사용자 메시지 추가
+    // Add user message
     const userMessage = { role: 'user', content: input };
     setMessages((prev) => [...prev, userMessage]);
 
-    // 입력 필드 초기화
+    // Clear input field
     setInput('');
     setIsLoading(true);
-    // AI 응답 요청
+    
+    // Request AI response
     try {
       const res = await fetch('http://localhost:5000/ask', {
         method: 'POST',
@@ -34,14 +36,14 @@ function Chat() {
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
       console.error('Error:', error);
-      const errorMessage = { role: 'assistant', content: '오류가 발생했습니다. 다시 시도해주세요.' };
+      const errorMessage = { role: 'assistant', content: 'An error occurred. Please try again.' };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Enter 키로 메시지 전송
+  // Send message on Enter key
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       sendMessage();
@@ -49,42 +51,84 @@ function Chat() {
   };
 
   const clearChat = () => {
-    setMessages([]);
-    setInput('');
+    if (window.confirm('Do you want to reset the chatting?')) {
+      setMessages([]);
+      setInput('');
+    }
   };
 
   return (
     <section id="chat" className={styles.chat}>
-      <h2 className={styles.title}>Chatting with AI</h2>
-      <div className={styles.chatContainer}>
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`${styles.message} ${
-              msg.role === 'user' ? styles.userMessage : styles.aiMessage
-            }`}
-          >
-            <span className={styles.messageContent}>{msg.content}</span>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Chat with <span className={styles.highlight}>AI</span></h2>
+        <div className={styles.underline}></div>
+        
+        <div className={styles.chatBox}>
+          <div className={styles.chatHeader}>
+            <div className={styles.chatTitle}>AI Assistant</div>
+            <button onClick={clearChat} className={styles.clearButton}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 6h18"></path>
+                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+              </svg>
+              Reset
+            </button>
           </div>
-        ))}
-        <div ref={chatEndRef} />
-      </div>
-
-      {isLoading && <div className={styles.loading}>로딩 중...</div>}
-      
-      <div className={styles.inputContainer}>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyPress={handleKeyPress}
-          placeholder="Ask questions"
-          className={styles.input}
-        />
-        <button onClick={sendMessage} className={styles.button}>
-          Send
-        </button>
-        <button onClick={clearChat} className={styles.clearButton}>Reset</button>
+          
+          <div ref={chatContainerRef} className={styles.chatContainer}>
+            {messages.length === 0 ? (
+              <div className={styles.emptyChat}>
+                <div className={styles.welcomeIcon}>💬</div>
+                <p>Start a conversation with the AI assistant</p>
+              </div>
+            ) : (
+              messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`${styles.message} ${
+                    msg.role === 'user' ? styles.userMessage : styles.aiMessage
+                  }`}
+                >
+                  <div className={styles.messageBubble}>
+                    <span className={styles.messageContent}>{msg.content}</span>
+                  </div>
+                </div>
+              ))
+            )}
+            <div ref={chatEndRef} />
+          </div>
+          
+          <div className={styles.inputContainer}>
+            {isLoading && <div className={styles.loadingIndicator}>
+              <div className={styles.dot}></div>
+              <div className={styles.dot}></div>
+              <div className={styles.dot}></div>
+            </div>}
+            
+            <div className={styles.inputWrapper}>
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Ask something..."
+                className={styles.input}
+                disabled={isLoading}
+              />
+              <button 
+                onClick={sendMessage} 
+                className={styles.sendButton}
+                disabled={isLoading || !input.trim()}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
