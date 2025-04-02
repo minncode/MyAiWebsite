@@ -7,41 +7,49 @@ function Projects() {
   const projects = [
     {
       id: 1,
-      title: 'DeepSeek 웹사이트',
-      description: 'LM Studio의 DeepSeek 모델을 활용한 인터랙티브 채팅 웹사이트.',
+      title: 'My website with AI chat',
+      description: 'An interactive chat website leveraging LM Studio\'s DeepSeek model.',
       technologies: ['React', 'Node.js'],
       category: 'web',
       image: '/img/deepseek.jpg' // placeholder path
     },
     {
       id: 2,
-      title: 'Image Classify',
-      description: 'LM Studio의 DeepSeek 모델을 활용한 인터랙티브 채팅 웹사이트.',
-      technologies: ['React', 'Node.js'],
+      title: 'Pixora App Project',
+      description: 'Designed and developed an educational AI image classification Android app for children, using Java and TensorFlow Lite.',
+      technologies: ['Java(Android)', 'TensorFlow Lite', 'Firebase'],
       category: 'ai',
       image: '/img/imageclassify.jpg' // placeholder path
     },
     {
       id: 3,
-      title: 'Image Classify Pro',
-      description: 'LM Studio의 DeepSeek 모델을 활용한 인터랙티브 채팅 웹사이트.',
-      technologies: ['React', 'Node.js'],
+      title: 'SplitFriend App Project',
+      description: 'Implemented the back-end for a group expense-sharing Android app, focusing on secure payment processing and real-time activity tracking.',
+      technologies: ['Java(Android)', 'Stripe API', 'Firebase'],
       category: 'ai',
       image: '/img/imageclassify.jpg' // placeholder path
     },
     {
       id: 4,
-      title: 'Image Classify App',
-      description: 'LM Studio의 DeepSeek 모델을 활용한 인터랙티브 채팅 웹사이트.',
-      technologies: ['React', 'Node.js'],
+      title: 'Interactio Social Media Platform',
+      description: 'Develope a full-stack social media platform using React, Node.js, and MongoDB, inspired by platforms like Facebook.',
+      technologies: ['React', 'Node.js', 'MongoDB'],
       category: 'mobile',
       image: '/img/imageclassify.jpg' // placeholder path
     },
     {
       id: 5,
-      title: 'Image Classify Web',
-      description: 'LM Studio의 DeepSeek 모델을 활용한 인터랙티브 채팅 웹사이트.',
+      title: 'CleanViet – The Waste Classification App',
+      description: 'The App helps users classify waste using image recognition and simple quiz.',
       technologies: ['React', 'Node.js'],
+      category: 'web',
+      image: '/img/imageclassify.jpg' // placeholder path
+    },
+    {
+      id: 6,
+      title: 'RMITdays - Campus Companion Web App',
+      description: 'Created a campus society web based application to support student experience at RMIT University.',
+      technologies: ['HTML/CSS/JS', 'Node.js', 'MongoDB'],
       category: 'web',
       image: '/img/imageclassify.jpg' // placeholder path
     }
