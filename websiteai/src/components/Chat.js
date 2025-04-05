@@ -13,35 +13,38 @@ function Chat() {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+  // Hugging Face 직접 호출 부분 삭제하고 백엔드로 요청
+const sendMessage = async () => {
+  if (!input.trim()) return;
 
-    // Add user message
-    const userMessage = { role: 'user', content: input };
-    setMessages((prev) => [...prev, userMessage]);
+  const userMessage = { role: 'user', content: input };
+  setMessages((prev) => [...prev, userMessage]);
+  setInput('');
+  setIsLoading(true);
 
-    // Clear input field
-    setInput('');
-    setIsLoading(true);
-    
-    // Request AI response
-    try {
-      const res = await fetch('http://localhost:5000/ask', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input }),
-      });
-      const data = await res.json();
-      const aiMessage = { role: 'assistant', content: data.choices[0].message.content };
+  try {
+    const res = await fetch("http://localhost:5000/ask", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: input }),
+    });
+
+    const data = await res.json();
+
+    if (data?.content) {
+      const aiMessage = { role: 'assistant', content: data.content };
       setMessages((prev) => [...prev, aiMessage]);
-    } catch (error) {
-      console.error('Error:', error);
-      const errorMessage = { role: 'assistant', content: 'An error occurred. Please try again.' };
-      setMessages((prev) => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
+    } else {
+      throw new Error("Invalid response");
     }
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    const errorMessage = { role: 'assistant', content: '오류가 발생했습니다. 다시 시도해주세요.' };
+    setMessages((prev) => [...prev, errorMessage]);
+  } finally {
+    setIsLoading(false);
+  }
+};  
 
   // Send message on Enter key
   const handleKeyPress = (e) => {
