@@ -2,20 +2,32 @@
 
 ![CVwithAI Chat App](https://via.placeholder.com/800x400.png?text=CVwithAI+Chat+App) <!-- Add a screenshot for better visuals -->
 
-## Project Overview
+## 🚀 Live Demo
 
-**CVwithAI Chat App** is a web application that enables real-time conversations with AI, developed as a portfolio project for my internship application at Naver Japan’s Vietnam office. The application consists of a frontend built with React and a backend powered by Node.js, utilizing Hugging Face’s `google/gemma-2-9b-it` model for natural language processing. It is deployed using Vercel (frontend) and Render (backend).
-
-Through this project, I gained hands-on experience in frontend-backend communication, API integration, CORS issue resolution, cloud deployment, and improving AI response quality.
+- Frontend: https://cvwithaichat-app.vercel.app/chat  
+- Backend: https://myaiwebsite-backend.onrender.com/ask
 
 ---
 
-## Key Features
+## 🧠 Features
 
-- **AI Conversations**: The `google/gemma-2-9b-it` model generates natural responses to user messages.
-- **Real-Time Chat Interface**: A responsive UI built with React for seamless user interaction.
-- **Hugging Face API Integration**: Leverages the Hugging Face Inference API for AI response generation.
-- **Deployment**: Hosted on Vercel (frontend) and Render (backend).
+- 🤖 AI-powered chat using Hugging Face Inference API  
+- ⚛️ React frontend with responsive UI  
+- 🌐 Node.js backend with rate limiting and CORS setup  
+- ☁️ Deployed with Vercel (frontend) & Render (backend)  
+- 🔐 Environment variable-based API key management
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer       | Tech                         |
+|-------------|------------------------------|
+| Frontend    | React, React Router DOM      |
+| Backend     | Node.js, Express, Axios, CORS|
+| Deployment  | Vercel (frontend), Render (backend) |
+| API         | Hugging Face `google/gemma-2-9b-it` |
+| Others      | Git/GitHub, .env, CSS Modules |
 
 ---
 
@@ -68,14 +80,6 @@ cvwithaichat/
 │   ├── package.json
 │   ├── .gitignore
 ├── README.md
-
-text
-
-접기
-
-자동 줄바꿈
-
-복사
 
 ---
 
