@@ -10,7 +10,9 @@ function Chat() {
 
   // Scroll to bottom when messages update
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messages.length > 0) {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages]);
 
   const sendMessage = async () => {
@@ -70,7 +72,7 @@ function Chat() {
     if (listItems) {
       const listHtml = listItems
         .map((item) => {
-          const [_, title, description] =
+          const [title, description] =
             item.match(/(\d+\.\s+[^:]+):(.*)/) || [];
           return `<div class="list-item"><strong>${title}</strong>${description}</div>`;
         })

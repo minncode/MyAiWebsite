@@ -95,6 +95,14 @@
   overflow: hidden;
 }
 
+.webImg {
+  max-width: 400px;
+}
+
+.mobileImg {
+  max-width: 150px;
+}
+
 .placeholder {
   width: 100%;
   height: 100%;
