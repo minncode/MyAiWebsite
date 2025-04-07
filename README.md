@@ -1,10 +1,15 @@
 # CVwithAI Chat App
 
-![CVwithAI Chat App](https://via.placeholder.com/800x400.png?text=CVwithAI+Chat+App) <!-- Add a screenshot for better visuals -->
+![Image](https://github.com/user-attachments/assets/9871f9ff-ad01-4187-80ed-64d33f11c812)
+![Image](https://github.com/user-attachments/assets/58f050d0-0fee-4543-9b2a-587bcc3ad5d0)
+![Image](https://github.com/user-attachments/assets/43d21f4a-3c2e-401d-a832-e9357dde89d6)
+![Image](https://github.com/user-attachments/assets/2774980b-65bc-4bf6-993b-53067db3409d)
+![Image](https://github.com/user-attachments/assets/117e8d15-9d2b-4ddc-a901-5977406cb363)
+
 
 ## 🚀 Live Demo
 
-- Frontend: https://cvwithaichat-app.vercel.app/chat  
+- Frontend: https://cvwithaichat-app.vercel.app/
 - Backend: https://myaiwebsite-backend.onrender.com/ask
 
 ---
@@ -146,11 +151,16 @@ Configured environment variables in both Render and Vercel dashboards.
 - Solution: Applied prompt engineering to enforce structured responses
 ```
 const prompt = `
-  Respond to users' questions in a clean, structured format.
-  - Your answers should be concise and clear.
-  - If you use lists, separate each item with a line break and number it.
-  - Avoid unnecessary repetition and provide specific advice that reflects the user's context.
-  ${userInput}
+You are a helpful AI assistant. Answer the user's question below clearly and concisely.
+
+Guidelines:
+1. Keep responses brief and to the point.
+2. Use numbered lists with line breaks for multiple points.
+3. Avoid repetition.
+4. Make responses context-aware and practical.
+
+User: ${userInput}
+Assistant:
 `;
 ```
 Enhanced readability by post-processing responses in the frontend using the formatResponse function.
@@ -162,5 +172,5 @@ Enhanced readability by post-processing responses in the frontend using the form
 - **User Experience**: Add chat history storage and dark mode support. <br/>
 - **Performance Optimization**: Implement response caching on the backend. <br/>
 - **Fine-tuning**: Fine-tune an open-source model (e.g., Mistral or Gemma) on domain-specific data (e.g., CV writing examples) to improve contextual accuracy.
-
+- **Server Stability**: Address limitations of free-tier hosting, which may cause the server to go offline or become unresponsive during periods of inactivity.
 ---
